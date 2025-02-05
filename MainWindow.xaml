@@ -1,0 +1,182 @@
+﻿<controls:MetroWindow  xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls" x:Class="ProductsWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        Title="Магазин Космос" Height="700" Width="950"
+        MinWidth="700" MaxWidth="1100" WindowStartupLocation="CenterScreen"
+        Background="#121212">
+
+    <controls:MetroWindow.Resources>
+        <Style TargetType="syncfusion:SfDataGrid">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="RowHoverHighlightingBrush" Value="#333333"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#2C2C2C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowHeight" Value="60"/>
+            <Setter Property="CurrentCellBorderBrush" Value="#00000000"/>
+            <Setter Property="SelectionForegroundBrush" Value="White"/>
+        </Style>
+
+        <Style TargetType="syncfusion:GridCell">
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <LinearGradientBrush x:Key="NormalBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#CCC" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="DefaultedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#777" Offset="0.0"/>
+                    <GradientStop Color="#000" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="DarkBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#FFF" Offset="0.0"/>
+                    <GradientStop Color="#AAA" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#BBB" Offset="0.0"/>
+                    <GradientStop Color="#EEE" Offset="0.1"/>
+                    <GradientStop Color="#EEE" Offset="0.9"/>
+                    <GradientStop Color="#FFF" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="PressedBorderBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#444" Offset="0.0"/>
+                    <GradientStop Color="#888" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#EEE" />
+        <SolidColorBrush x:Key="DisabledBorderBrush" Color="#AAA" />
+        <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#888" />
+        <LinearGradientBrush x:Key="NormalBorderBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#CCC" Offset="0.0"/>
+                    <GradientStop Color="#444" Offset="1.0"/>
+                </GradientStopCollection>
+            </GradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
+            <Border BorderBrush="#444" BorderThickness="3" CornerRadius="10" Background="#333" Name="Border">
+                <Grid>
+                    <Rectangle Name="FocusCue" Visibility="Hidden" Stroke="Black"
+                       StrokeThickness="1" StrokeDashArray="1 2" />
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ContentPresenter.ContentTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" Foreground="White" FontWeight="Bold"/>
+                            </DataTemplate>
+                        </ContentPresenter.ContentTemplate>
+                    </ContentPresenter>
+                </Grid>
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="#555" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Border" Property="Background" Value="#777" />
+                    <Setter TargetName="Border" Property="BorderBrush" Value="#999" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Border" Property="Background" Value="#2C2C2C" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="ProductButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#2C2C2C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </controls:MetroWindow.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <syncfusion:SfDataGrid 
+            EnableDataVirtualization="True"
+            Name="ProductDataGrid" 
+                               HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                               SelectionChanged="ProductDataGrid_SelectionChanged" 
+                               ItemsSource="{Binding Products}" 
+                               Margin="0,0,20,0"
+                               SelectionMode="Single"
+                               RowHeight="65"
+                               AllowRowHoverHighlighting="True"
+                               GridLinesVisibility="None"
+                               Padding="10">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTemplateColumn HeaderText=" " Width="65">
+                    <syncfusion:GridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PicturePath}" Width="50" Height="50" Stretch="UniformToFill">
+                                <Image.Clip>
+                                    <EllipseGeometry Center="25,25" RadiusX="25" RadiusY="25"/>
+                                </Image.Clip>
+                            </Image>
+                        </DataTemplate>
+                    </syncfusion:GridTemplateColumn.CellTemplate>
+                </syncfusion:GridTemplateColumn>
+                <syncfusion:GridTextColumn MappingName="Id" HeaderText="ID" Width="50" TextAlignment="Center"/>
+                <syncfusion:GridTextColumn MappingName="Name" HeaderText="Название" Width="200" TextAlignment="Center"/>
+                <syncfusion:GridTextColumn MappingName="Price" HeaderText="Цена" Width="100" TextAlignment="Center"/>
+                <syncfusion:GridTextColumn MappingName="Quantity" HeaderText="Количество" Width="100" TextAlignment="Center"/>
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+
+        <Border Width="280" Height="400" Grid.Column="1" Padding="16" Background="#1E1E1E" BorderBrush="#2C2C2C" BorderThickness="1" CornerRadius="8">
+            <StackPanel>
+                <TextBlock Text="Инфо о товаре" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#E0E0E0"/>
+                <TextBlock Name="ProductNameLabel" Text="" FontSize="16" Foreground="#E0E0E0" Margin="0,10" HorizontalAlignment="Center" FontWeight="Bold" />
+                <TextBlock Name="ProductPriceLabel" Text="Цена: " FontSize="16" Foreground="#E0E0E0" Margin="0,10" HorizontalAlignment="Center" />
+                <TextBlock Name="ProductQuantityLabel" Text="Количество: " FontSize="16" Foreground="#E0E0E0" Margin="0,10" HorizontalAlignment="Center"/>
+                <Image Name="ProductImage" Width="100" Height="100" HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Center" Stretch="UniformToFill">
+                    <Image.Clip>
+                        <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                    </Image.Clip>
+                </Image>
+
+                <Button Content="Купить!" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
+                        Width="240" Height="50" Margin="0,20,0,0"
+                         Click="BuyButton_Click"
+                      Template="{StaticResource ButtonTemplate}"   />
+            </StackPanel>
+        </Border>
+    </Grid>
+</controls:MetroWindow>
